@@ -1,0 +1,40 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Custom Post Type Order\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-08-24 12:54+0100\n"
+"PO-Revision-Date: 2010-08-24 12:56+0100\n"
+"Last-Translator: Amaury Balmer <amaury@balmer.fr>\n"
+"Language-Team: Be API <technique@beapi.fr>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-KeywordsList: __;_e\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-SearchPath-0: /Users/amaurybalmer/Desktop/SVN/MondadoriPub/trunk/plugins/custom-post-type-order\n"
+
+#: /Users/amaurybalmer/Desktop/SVN/MondadoriPub/trunk/plugins/custom-post-type-order/custom-post-type-order.php:53
+msgid "Invalid post type"
+msgstr ""
+
+#: /Users/amaurybalmer/Desktop/SVN/MondadoriPub/trunk/plugins/custom-post-type-order/custom-post-type-order.php:80
+msgid "Order this"
+msgstr ""
+
+#: /Users/amaurybalmer/Desktop/SVN/MondadoriPub/trunk/plugins/custom-post-type-order/custom-post-type-order.php:93
+#, php-format
+msgid "Order this content type : %s"
+msgstr ""
+
+#: /Users/amaurybalmer/Desktop/SVN/MondadoriPub/trunk/plugins/custom-post-type-order/custom-post-type-order.php:94
+msgid "Not need to save the order with a submit button ! The order of the contents is automatically recorded during the drag and drop."
+msgstr ""
+
+#: /Users/amaurybalmer/Desktop/SVN/MondadoriPub/trunk/plugins/custom-post-type-order/custom-post-type-order.php:97
+msgid "This plugin can't work without javascript, because it's use drag and drop and AJAX."
+msgstr ""
+
+#: /Users/amaurybalmer/Desktop/SVN/MondadoriPub/trunk/plugins/custom-post-type-order/custom-post-type-order.php:144
+msgid "Pages"
+msgstr ""
