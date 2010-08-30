@@ -5,7 +5,7 @@ Plugin URI: http://www.beapi.fr
 Description: A admin for order custom post type with hierarchical posts
 Author: Be API
 Author URI: http://beapi.fr
-Version: 0.9
+Version: 1.0
 */
 
 if ( is_admin() )
@@ -33,7 +33,7 @@ class CustomPostTypeOrder {
 	function registerJavaScript() {
 		if ( $this->current_post_type != null ) {
 			// jQuery UI Sortable
-			wp_enqueue_script( 'jquery-ui-sortable', plugins_url('/js/ui.nestedSortable.js', __FILE__), array('jquery'), '1.7.2' );
+			wp_enqueue_script( 'cust-jquery-ui-sortable', plugins_url('/js/ui.nestedSortable.js', __FILE__), array('jquery', 'jquery-ui-core'), '1.7.2', false );
 			
 			// jQuery UI Style
 			wp_enqueue_style( 'jquery-ui', plugins_url('/css/ui-lightness/jquery-ui-1.8.4.custom.css', __FILE__), array(), '1.8.4' );
@@ -64,8 +64,18 @@ class CustomPostTypeOrder {
 	function saveAjaxOrder() {
 		global $wpdb;
 		
-		foreach( (array) $_POST['order'] as $position => $hard_item_id ) {
-			$wpdb->update( $wpdb->posts, array('menu_order' => (int) $position), array('ID' => (int) str_replace('item_', '', $hard_item_id)) );
+		parse_str($_POST['order'], $output);
+		
+		foreach( (array) $output as $key => $values ) {
+			if ( $key == 'item' ) {
+				foreach( $values as $position => $id ) {
+					$wpdb->update( $wpdb->posts, array('menu_order' => $position, 'post_parent' => 0), array('ID' => $id) );
+				} 
+			} else {
+				foreach( $values as $position => $id ) {
+					$wpdb->update( $wpdb->posts, array('menu_order' => $position, 'post_parent' => str_replace('item_', '', $key)), array('ID' => $id) );
+				}
+			}
 		}
 	}
 	
@@ -91,36 +101,50 @@ class CustomPostTypeOrder {
 		?>
 		<div class="wrap">
 			<h2><?php printf(__('Order this content type : %s', 'cpto'), $this->current_post_type->labels->singular_name); ?></h2>
-			<p><?php _e('Not need to save the order with a submit button ! The order of the contents is automatically recorded during the drag and drop.', 'cpto'); ?></p>
+			
+			<div id="ajax-response"></div>
 			
 			<noscript>
-				<p><?php _e('This plugin can\'t work without javascript, because it\'s use drag and drop and AJAX.', 'cpto'); ?></p>
+				<div class="error message">
+					<p><?php _e('This plugin can\'t work without javascript, because it\'s use drag and drop and AJAX.', 'cpto'); ?></p>
+				</div>
 			</noscript>
 			
 			<div id="order-post-type">
-				<ol id="sortable">
+				<ul id="sortable">
 					<?php $this->listPages('hide_empty=0&title_li=&post_type='.$this->current_post_type->name); ?>
-				</ol>
+				</ul>
+				
+				<div class="clear"></div>
 			</div>
 			
+			<p class="submit">
+				<a href="#" id="save-order" class="button-primary"><?php _e('Save order', 'cpto'); ?></a>
+			</p>
+			
 			<style type="text/css">
-				#sortable { list-style-type: none; margin: 0; padding: 0; width: 60%; }
-				#sortable li { margin: 0 3px 3px 3px; padding: 0.4em; padding-left: 1.5em; font-size: 1em; height: 18px;position:relative;}
-				#sortable li span { position: absolute; margin-left: -1.3em; }
-				.placeholder{border: dashed 1px #ccc;background-color:#FFFFCC;heigth:20px;}
+				#sortable { list-style-type: none; margin: 10px 0 0; padding: 0; width: 100%; }
+				#sortable ul { margin-left:20px; list-style: none; }
+				#sortable li { margin: 0; padding:0; }
+				#sortable li span { display: block; border: 1px solid #ccc; background: #eee;  padding: 5px; }
+				.placeholder{border: dashed 1px #ccc;background-color:#FFFFCC;height:40px;}
 			</style>
 			<script type="text/javascript">
-				jQuery(function() {
+				jQuery(document).ready(function() {
 					jQuery("#sortable").sortable({
 						'tolerance':'intersect',
 						'cursor':'pointer',
 						'items':'li',
 						'placeholder':'placeholder',
-						'nested': 'ol'
+						'nested': 'ul'
 					});
+					
 					jQuery("#sortable").disableSelection();
-					jQuery("#sortable").bind( "sortupdate", function(event, ui) {
-						jQuery.post( ajaxurl, { action:'update-custom-type-order', order:jQuery("#sortable").sortable("toArray") } );
+					jQuery("#save-order").bind( "click", function() {
+						jQuery.post( ajaxurl, { action:'update-custom-type-order', order:jQuery("#sortable").sortable("serialize") }, function() {
+							jQuery("#ajax-response").html('<div class="message updated fade"><p><?php echo esc_js(__("Items sorted with success !", "cpto")); ?></p></div>');
+							jQuery("#ajax-response div").delay(800).hide("slow");
+						});
 					});
 				});
 			</script>
@@ -164,7 +188,7 @@ class CustomPostTypeOrder {
 
 		if ( !empty($pages) ) {
 			if ( $r['title_li'] )
-				$output .= '<li class="pagenav">' . $r['title_li'] . '<ul>';
+				$output .= '<li class="pagenav intersect">' . $r['title_li'] . '<ul>';
 				
 			$output .= $this->walkTree($pages, $r['depth'], $r);
 
@@ -263,8 +287,7 @@ class Custom_Type_Order_Walker extends Walker {
 
 		extract($args, EXTR_SKIP);
 
-		$output .= $indent . '<li id="item_'.$page->ID.'"  class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>';
-		$output .= apply_filters( 'the_title', $page->post_title, $page->ID );
+		$output .= $indent . '<li id="item_'.$page->ID.'"><span>'.apply_filters( 'the_title', $page->post_title, $page->ID ).'</span>';
 	}
 
 	/**

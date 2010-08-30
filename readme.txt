@@ -3,7 +3,7 @@ Contributors: momo360modena
 Tags: custom, post, customposttype, type, custom type, post type, order, ordering, sort, menu_order, custom
 Requires at least: 3.0
 Tested up to: 3.0.1
-Stable tag: 0.9
+Stable tag: 1.0
 
 Add a page on admin for order items for each hierarchical custom post type
 
@@ -29,6 +29,9 @@ Plugin is too limited for questions no ?
 
 == Change Log ==
 
+* Version 1.0
+	* Make hierarchical javascript drag and drop
+	* Add save button
 * Version 0.9
 	* initial release
 
