@@ -1,40 +1,68 @@
+# Translation of the WordPress plugin Custom Post Type Order 1.0 by Be API.
+# Copyright (C) 2010 Be API
+# This file is distributed under the same license as the Custom Post Type Order package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2010.
+#
+#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: Custom Post Type Order\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-08-24 12:54+0100\n"
-"PO-Revision-Date: 2010-08-24 12:56+0100\n"
-"Last-Translator: Amaury Balmer <amaury@balmer.fr>\n"
-"Language-Team: Be API <technique@beapi.fr>\n"
+"Project-Id-Version: Custom Post Type Order 1.0\n"
+"Report-Msgid-Bugs-To: http://wordpress.org/tag/custom-post-type-order\n"
+"POT-Creation-Date: 2010-08-30 19:56+0000\n"
+"PO-Revision-Date: 2010-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Poedit-KeywordsList: __;_e\n"
-"X-Poedit-Basepath: .\n"
-"X-Poedit-SourceCharset: utf-8\n"
-"X-Poedit-SearchPath-0: /Users/amaurybalmer/Desktop/SVN/MondadoriPub/trunk/plugins/custom-post-type-order\n"
 
-#: /Users/amaurybalmer/Desktop/SVN/MondadoriPub/trunk/plugins/custom-post-type-order/custom-post-type-order.php:53
+#: custom-post-type-order.php:53
 msgid "Invalid post type"
 msgstr ""
 
-#: /Users/amaurybalmer/Desktop/SVN/MondadoriPub/trunk/plugins/custom-post-type-order/custom-post-type-order.php:80
+#: custom-post-type-order.php:90
 msgid "Order this"
 msgstr ""
 
-#: /Users/amaurybalmer/Desktop/SVN/MondadoriPub/trunk/plugins/custom-post-type-order/custom-post-type-order.php:93
+#: custom-post-type-order.php:103
 #, php-format
 msgid "Order this content type : %s"
 msgstr ""
 
-#: /Users/amaurybalmer/Desktop/SVN/MondadoriPub/trunk/plugins/custom-post-type-order/custom-post-type-order.php:94
-msgid "Not need to save the order with a submit button ! The order of the contents is automatically recorded during the drag and drop."
+#: custom-post-type-order.php:109
+msgid ""
+"This plugin can't work without javascript, because it's use drag and drop "
+"and AJAX."
 msgstr ""
 
-#: /Users/amaurybalmer/Desktop/SVN/MondadoriPub/trunk/plugins/custom-post-type-order/custom-post-type-order.php:97
-msgid "This plugin can't work without javascript, because it's use drag and drop and AJAX."
+#: custom-post-type-order.php:122
+msgid "Save order"
 msgstr ""
 
-#: /Users/amaurybalmer/Desktop/SVN/MondadoriPub/trunk/plugins/custom-post-type-order/custom-post-type-order.php:144
+#: custom-post-type-order.php:145
+msgid "Items sorted with success !"
+msgstr ""
+
+#: custom-post-type-order.php:168
 msgid "Pages"
+msgstr ""
+
+#. Plugin Name of the plugin/theme
+msgid "Custom Post Type Order"
+msgstr ""
+
+#. Plugin URI of the plugin/theme
+msgid "http://www.beapi.fr"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid "A admin for order custom post type with hierarchical posts"
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "Be API"
+msgstr ""
+
+#. Author URI of the plugin/theme
+msgid "http://beapi.fr"
 msgstr ""
