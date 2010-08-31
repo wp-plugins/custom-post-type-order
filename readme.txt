@@ -12,7 +12,11 @@ Add a page on admin for order items for each hierarchical custom post type
 Add a page on admin for order items for each hierarchical custom post type
 This plugin allow the same thing of "My Order Page", but for each hierarchical custom type !
 
-This plugin can't sort hierarchy items actually. I work on this javascript part.
+Contrary to the plugin "My Order Page", you can modify the order and the hierarchy at one time.
+The drag and drop works as the menus of WordPress 3.0
+
+The effect JavaScript is a little bit sensitive for the moment, it is not always easy to control the movements.
+If a kind soul wishes to improve the behavior, I am a buyer in 100 %!
 
 == Installation ==
 
